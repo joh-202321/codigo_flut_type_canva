@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Typebot Flutuante Profissional</title>
+  <style>
+    /* 🔘 Estilo do botão flutuante */
+    #typebot-button {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background-color: #4CAF50;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.3s ease;
+      animation: pulse 2s infinite;
+    }
+
+    /* 🌀 Animação pulsante */
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+      100% { transform: scale(1); }
+    }
+
+    #typebot-button:hover {
+      transform: scale(1.15);
+    }
+
+    /* 📱 Estilo do iframe (chat) */
+    #typebot-frame {
+      opacity: 0;
+      pointer-events: none;
+      position: fixed;
+      bottom: 90px;
+      right: 20px;
+      width: 400px;
+      height: 600px;
+      max-width: 90%;
+      max-height: 90%;
+      border: none;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+      z-index: 9999;
+      transition: opacity 0.4s ease;
+      background: white;
+    }
+
+    #typebot-frame.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* ❌ Botão de fechar dentro do iframe */
+    #close-button {
+      position: fixed;
+      bottom: 670px;
+      right: 35px;
+      background-color: #ff4d4f;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      font-size: 18px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+      z-index: 10000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #close-button.show {
+      display: flex;
+    }
+
+    /* 🔗 Ícone SVG responsivo */
+    .chat-icon {
+      width: 28px;
+      height: 28px;
+      fill: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 🔘 Botão flutuante -->
+  <button id="typebot-button" aria-label="Abrir chat">
+    <svg class="chat-icon" viewBox="0 0 24 24">
+      <path d="M4 4h16v12H5.17L4 17.17V4zm0-2a2 2 0 0 0-2 2v18l4-4h14a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H4z"/>
+    </svg>
+  </button>
+
+  <!-- ❌ Botão de fechar -->
+  <button id="close-button" aria-label="Fechar chat">&times;</button>
+
+  <!-- 🪪 Iframe do Typebot -->
+  <iframe 
+    id="typebot-frame" 
+    src="https://typebot.co/my-typebot-bip5hl9">
+  </iframe>
+
+  <script>
+    const openButton = document.getElementById('typebot-button');
+    const closeButton = document.getElementById('close-button');
+    const iframe = document.getElementById('typebot-frame');
+
+    openButton.addEventListener('click', () => {
+      iframe.classList.add('show');
+      closeButton.classList.add('show');
+    });
+
+    closeButton.addEventListener('click', () => {
+      iframe.classList.remove('show');
+      closeButton.classList.remove('show');
+    });
+  </script>
+
+</body>
+</html>
